@@ -1,0 +1,13 @@
+name = "MyPkgTemplate"
+uuid = "c1c1e88c-cb6c-463d-9723-3dce2b3356d0"
+authors = ["josePereiro <jose.pereiro.lab@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.5"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
