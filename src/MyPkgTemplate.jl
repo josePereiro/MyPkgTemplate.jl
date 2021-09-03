@@ -23,6 +23,12 @@ module MyPkgTemplate
         ]
     end
 
+    function _cp(src_, dst_; kwargs...)
+        mkpath(dirname(src_))
+        mkpath(dirname(dst_))
+        cp(src_, dst_; kwargs...)
+    end
+
     function mygenerate(pkgname; 
             user = default_user(), julia = v"1.5.0"
         )
@@ -34,6 +40,13 @@ module MyPkgTemplate
         t = Template(;user, julia, plugins, dir)
         generate(t, pkgname)
 
+        # copy tagged-release.yml
+        _cp(
+            joinpath(ROOT, ".github/workflows/tagged-release.yml"),
+            joinpath(pkgdir, ".github/workflows/tagged-release.yml");
+            force = true
+        )
+        
         return pkgdir
     end
 
